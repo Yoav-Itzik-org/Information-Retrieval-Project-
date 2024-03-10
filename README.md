@@ -1,9 +1,9 @@
 # Information-Retrieval-Project
 
-## Our goal: this project is to design and implement a search engine that can efficiently and effectively retrieve relevant Wikipedia English articles based on user queries.
-### The project designed to worked with a bucket on GCP.
-### Using an inverted index structures, the search engine will find the most relevant documents based on the tokens corresponding to the queries.
-### Our search engine perform similiary based on Consine Similarity function with an weight of tokens including tfidf.
+## Our goal: Design and implement a search engine that can efficiently and effectively retrieve relevant Wikipedia English articles based on user queries.
+### The project is designed to work with a bucket on GCP (Credential to the bucket are located at the root folder of the repository).
+#### Using an inverted index structures, the search engine will find the most relevant documents based on the tokens corresponding to the queries.
+#### Our search engine perform similiary based on Consine Similarity function with an weight of tokens including tfidf.
 
 ## Project structure:
 
