@@ -4,6 +4,7 @@
 ### The project is designed to work with a GCP bucket (Credentials are located at the root folder of the repository).
 ### Using an inverted index structures, the search engine will find the most relevant documents based on the tokens corresponding to the queries.
 ### Our search engine perform similiary based on Consine Similarity function with an weight of tokens including tfidf.
+###### To run a query run the url http://35.226.68.243:8080/search?query=YOUR_QUERY
 
 # Project structure:
 
