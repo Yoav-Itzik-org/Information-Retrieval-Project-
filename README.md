@@ -8,9 +8,9 @@
 # Project structure:
 
 ## General:
-  Report.pdf - report describing the whole workflow of the project.
-  indexes_file.txt - specify the whole bucket content.
-  startup_script_gcp.sh - startup script to create a vm machine that will run the search engine
+### Report.pdf - report describing the whole workflow of the project.
+### indexes_file.txt - specify the whole bucket content.
+### startup_script_gcp.sh - startup script to create a vm machine that will run the search engine
 
 ## Backend:
 #### inverted_index_gcp.py - holds the InvertedIndex class and classes that holds the io logics to the bucket.
