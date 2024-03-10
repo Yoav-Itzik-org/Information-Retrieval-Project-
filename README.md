@@ -39,7 +39,7 @@
 #### 1. process query(query) - convert a query to list of tokens (tokenize the query).
 #### 2. segment_search(query_tokens_pairs, segment_name) - return all the relevant documents to the query tokens in a relevant segment (title/body/anchor).
 #### 3. search(query) - combine it all: gets a query and returns the most relevant documents (with their titles) of the words by all the measuers: title, body, anchor, document pagerank and document pageviews.
-### Frontend:
+## Frontend:
 #### run_frontend_in_colab.ipynb - Intstructions to run the frontend in a google colab notebook.
 #### run_frontend_in_gcp.sh - commands to add to the gcp vm machine to run the search engine.
 #### search_frontend.py - script with search function to return (by ץjson file) the relevant documents to a query.
