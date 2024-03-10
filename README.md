@@ -11,8 +11,9 @@
 ## General:
 ### Report.pdf - report describing the whole workflow of the project.
 ### indexes_file.txt - specify the whole bucket content.
-### startup_script_gcp.sh - startup script to create a vm machine that will run the search engine
-
+### startup_script_gcp.sh - startup script to create a vm machine that will run the search engine.
+### Zipped Google Credentials.zip - zipped google credentials to get to the bucket (to run the engine yourself).
+###### Edit the path to the Credentials in the backend_helper global variable.
 ## Backend:
 ### inverted_index_gcp.py - holds the InvertedIndex class and classes that holds the io logics to the bucket.
 ### backend_helper.py - holds helper classes for most of the logic behind the search operations. the classes are:
