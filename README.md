@@ -13,8 +13,8 @@
 ### startup_script_gcp.sh - startup script to create a vm machine that will run the search engine
 
 ## Backend:
-#### inverted_index_gcp.py - holds the InvertedIndex class and classes that holds the io logics to the bucket.
-#### backend_helper.py - holds helper classes for most of the logic behind the search operations. the classes are:
+### inverted_index_gcp.py - holds the InvertedIndex class and classes that holds the io logics to the bucket.
+### backend_helper.py - holds helper classes for most of the logic behind the search operations. the classes are:
 ### BucketManager
 #### Interacts with the bucket. It's key methods are:
 #### 1. get_bucket() - loads a bucket instance to the memory.
