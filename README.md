@@ -18,7 +18,7 @@
 ### BucketManager
 #### Interacts with the bucket. It's key methods are:
 #### 1. get_bucket() - loads a bucket instance to the memory.
-##### The next two methods will use the global_pickles folder specifically in the bucket.
+###### The next two methods will use the global_pickles folder specifically in the bucket.
 #### 2. load_pickle(filename) - given a pickle file name, return the object which it holds.
 #### 3. store_picle(file_name, object_to_store) - given a file_name and an objcet - store the object inside a pickle with the given name.
 ### InvertedIndexManager
@@ -26,7 +26,7 @@
 #### 1.  __retrieve_inverted_indicies() - loads to memory (from the bucket) the inverted index objects.
 #### 2. get_posting_list(inverted_index_name, term) - retrieved the posting list of the term at the relevant inverted index object.
 ### PageManager
-#### interacts with the global items of the pages. Its key methods are:
+#### Interacts with the global items of the pages. Its key methods are:
 #### 1. get_page_item(id, dict_name) - return an item of the given id (doc id).
 #### 2. get_number_of_pages() - return the number of pages in the corpus.
 ### Tokenizer
