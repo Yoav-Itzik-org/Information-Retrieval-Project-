@@ -6,7 +6,7 @@ STOP_WORDS_FILE_NAME = "stop_words"
 SEGMENTS_WEIGHTS_DICT = {"title": 0.7, "body": 0.23, "anchor": 0.07}
 ID_TITLE_DICT = "title"; ID_DICTS = [ID_TITLE_DICT, "page_rank", "page_views"]
 LOCAL_CREDENTIALS_JSON_PATH = r"C:\Users\t-yzelinger\OneDrive - post.bgu.ac.il\שנה ג'\סמסטר ה'\אחזור מידע\מטלות\מטלה מעשית 3\ir-assignment3-413720-d6c7c7c7a981.json"
-PRINT_LOG = True
+PRINT_LOG = False
 
 import os
 from google.cloud.storage import Client
@@ -314,36 +314,30 @@ class BackendSearch:
             if len(self.segments_results[chosen_dict]) < 30:
                 chosen_dict = "anchor"
         docs_ratings = self.segments_results[chosen_dict]
-        heap = []
-        heapify(heap)
-        for doc_id in docs_ratings:
-            for segment_name in SEGMENTS_WEIGHTS_DICT:
-                if segment_name == chosen_dict:
-                    continue
-                segment_doc_tf = self.segments_results[segment_name][doc_id]
-                docs_ratings[doc_id] += (
-                    segment_doc_tf * SEGMENTS_WEIGHTS_DICT[segment_name]
-                )
-            docs_ratings[doc_id] += log(PageManager.get_page_item(doc_id, "page_rank"), 10) + log(PageManager.get_page_item(doc_id, "page_views"), 20)
-            heappush(heap, (-1 * docs_ratings[doc_id], doc_id))
-        docs_sorted = []
-        for _ in range(30):
-            _, doc_id = heappop(heap)
-            doc_title = PageManager.get_page_item(doc_id, "title")
-            docs_sorted.append((str(doc_id), doc_title))
-        return docs_sorted
-        # docs_sorted = sorted(
-        #     docs_ratings,
-        #     key=lambda doc_id: docs_ratings[doc_id],
-        #     reverse=True)
-        # return list(
-        #     map(
-        #         lambda doc_id: (
-        #             str(doc_id),
-        #             PageManager.get_page_item(doc_id, "title")),
-        #             docs_sorted
-        #             )
-        # )
+        # heap = []
+        # heapify(heap)
+        # for doc_id in docs_ratings:
+        #     for segment_name in SEGMENTS_WEIGHTS_DICT:
+        #         if segment_name == chosen_dict:
+        #             continue
+        #         segment_doc_tf = self.segments_results[segment_name][doc_id]
+        #         docs_ratings[doc_id] += (
+        #             segment_doc_tf * SEGMENTS_WEIGHTS_DICT[segment_name]
+        #         )
+        #     docs_ratings[doc_id] += log(PageManager.get_page_item(doc_id, "page_rank"), 10) + log(PageManager.get_page_item(doc_id, "page_views"), 20)
+        #     heappush(heap, (-1 * docs_ratings[doc_id], doc_id))
+        # docs_sorted = []
+        # for _ in range(30):
+        #     _, doc_id = heappop(heap)
+        #     doc_title = PageManager.get_page_item(doc_id, "title")
+        #     docs_sorted.append((str(doc_id), doc_title))
+        # return docs_sorted
+        doc_rating = lambda doc_id: sum(self.segments_results[segment_name][doc_id] * SEGMENTS_WEIGHTS_DICT[segment_name] for segment_name in SEGMENTS_WEIGHTS_DICT) + log(PageManager.get_page_item(doc_id, "page_rank"), 10) + log(PageManager.get_page_item(doc_id, "page_views"), 20)
+        doc_dict = {(str(doc_id), PageManager.get_page_item(doc_id, "title")): doc_rating(doc_id) for doc_id in docs_ratings}
+        return sorted(doc_dict, key= doc_dict.get, reverse=True)[: min(30, len(doc_dict))]
+        # ratings = sorted(ratings, key=lambda doc_rating: doc_rating[1], reverse=True)[: min(30, len(docs_ratings))]
+        # return list(map(lambda doc_rating: (str(doc_rating[0]), PageManager.get_page_item(doc_rating[0], "title")), ratings))
+        
     
     def __init__(self):
         self.segments_results = {segment_name: None for segment_name in SEGMENTS_WEIGHTS_DICT}
@@ -357,3 +351,4 @@ def system_start():
     BackendSearch.start()
 
 system_start()
+print(BackendSearch().search("Apple orange banana"))
